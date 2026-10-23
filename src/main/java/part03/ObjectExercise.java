@@ -24,7 +24,9 @@ public class ObjectExercise {
      * @return A list of names of the people in the list.
      */
     public List<String> getNames(List<Person> people) {
+
         List<String> names = new ArrayList<>();
+
         for (Person p : people) {
             names.add(p.getName());
         }

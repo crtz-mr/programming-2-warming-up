@@ -25,9 +25,10 @@ public class StringBasics {
     public String truncate(String text, int maxLength) {
         // TODO: Fix this method
 
-        if (text.length() > maxLength) {
-            text.substring(0, maxLength);
+        if (text.length() >= maxLength) {
+            text = text.substring(0, maxLength);
         }
+
         return text;
     }
 
@@ -41,7 +42,7 @@ public class StringBasics {
     public boolean parseYesOrNo(String text) {
         // FIXME: this seems to always return false, even when the `text` is "yes"
 
-        if (text.toLowerCase() == "yes") {
+        if (text.toLowerCase().equalsIgnoreCase("yes")) {
             return true;
         }
         return false;
@@ -61,7 +62,29 @@ public class StringBasics {
      * @return "fizz", "buzz", "fizzbuzz" or the given number as a string.
      */
     public String getFizzBuzz(int number) {
-        return "fizzbuzz"; // TODO: implement this method
+
+        boolean divisibleByThree = false;
+        boolean divisibleByFive = false;
+
+        if (number % 3 == 0) {
+            divisibleByThree = true;
+        }
+
+        if (number % 5 == 0) {
+            divisibleByFive = true;
+        }
+
+        if (divisibleByThree && divisibleByFive) {
+            return "fizzbuzz";
+        } else if (divisibleByThree) {
+            return "fizz";
+        } else if (divisibleByFive) {
+            return "buzz";
+        } else {
+            return Integer.toString(number);
+        }
+
+        // TODO: implement this method
     }
 
     /**
@@ -80,7 +103,26 @@ public class StringBasics {
      * @return The text centered in a string of the given width: " Java ".
      */
     public String center(String text, int width) {
-        return null; // TODO: implement this method
+
+        String space = " ";
+        int padding = 0;
+
+        if (text.length() >= width) {
+            return text;
+        } else {
+            padding = width - text.length();
+            if (padding % 2 == 0) {
+                padding = padding / 2;
+                space = space.repeat(padding);
+                text = space + text + space;
+                return text;
+            } else {
+                padding = padding / 2;
+                text = space.repeat(padding + 1) + text + space.repeat(padding);
+                return text;
+            }
+        }
+        // TODO: implement this method
     }
 
     /**
